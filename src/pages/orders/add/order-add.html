@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Add Order
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="newOrderForm" (ngSubmit)="submit()">
+            
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>Date</ion-label>
+                <ion-datetime displayFormat="YYYY-MM-DD" formControlName="date" [(ngModel)]="order.date"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <order-types formControlName="orderTypeId" [allowNone]=false [(ngModel)]="order.orderTypeId"></order-types>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Price</ion-label>
+                <ion-input type="number" formControlName="price" [(ngModel)]="order.price"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Notes</ion-label>
+                <ion-textarea rows="3" formControlName="notes" [(ngModel)]="order.notes"></ion-textarea>
+            </ion-item>
+        </ion-list>
+        <br/>
+
+        <button ion-button type="submit" [disabled]="!this.newOrderForm.valid">Create</button>
+        <button ion-button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+    </form>
+    
+    
+</ion-content>

@@ -1,0 +1,19 @@
+<div *ngIf="mode === 'loading'">
+    Loading...
+</div>
+
+<div *ngIf="mode === 'success'">
+    <ion-item>
+        <ion-label stacked>Type</ion-label>
+        <ion-select [(ngModel)]="typeId" (ionChange)="changed($event);">
+            <ion-option *ngIf="allowNone" value="0" [selected]="allowNone && typeId===0">-- Order Type --</ion-option>
+            <ion-option *ngFor="let t of orderTypes;" value="{{t.id}}" [selected]="t.id === typeId">
+                {{t.type}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+</div>
+
+<div *ngIf="mode === 'error'">
+    Error... Please refresh the page
+</div>

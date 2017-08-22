@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Add Order
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<div *ngIf="waiting">
+    Please waiting
+</div>
+
+<form [formGroup]="newCustomerForm" (ngSubmit)="submit()">
+            <ion-list>
+                <ion-item>
+                    <ion-label stacked>Name</ion-label>
+                    <ion-input [(ngModel)]="customer.name" type="text" formControlName="name"
+                            [class.form-input-invalid]="newCustomerForm.controls.name.invalid && 
+                                                        newCustomerForm.controls.name.touched"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label stacked>Cell</ion-label>
+                    <ion-input [(ngModel)]="customer.cell" type="tel" formControlName="cell" ></ion-input>
+                </ion-item>
+                
+                <ion-item>
+                    <ion-label stacked>Home</ion-label>
+                    <ion-input [(ngModel)]="customer.home" type="tel" formControlName="home"></ion-input>
+                </ion-item>
+                
+                <ion-item>
+                    <ion-label stacked>Work</ion-label>
+                    <ion-input [(ngModel)]="customer.work" type="tel" formControlName="work" class="form-control"></ion-input>
+                </ion-item>
+                
+                <ion-item>
+                    <ion-label stacked>Other Phone</ion-label>
+                    <ion-input [(ngModel)]="customer.otherPhone" type="tel" formControlName="otherPhone"></ion-input>
+                </ion-item>
+                
+                <ion-item>
+                    <ion-label stacked>Email</ion-label>
+                    <ion-input type="email" formControlName="email" [(ngModel)]="customer.email"
+                            [class.form-input-invalid]="newCustomerForm.controls.email.invalid &&
+                                                        newCustomerForm.controls.email.touched"></ion-input>
+                </ion-item>
+                
+                <ion-item>
+                    <ion-label stacked>No Address</ion-label>
+                    <ion-checkbox [(ngModel)]="customer.noAddress" formControlName="noAddress" (change)="toggleNoAddress()"></ion-checkbox>
+                </ion-item>
+
+                <div id="adress" [hidden]="customer.noAddress">
+                    <ion-item>
+                        <ion-label stacked>Address</ion-label>
+                        <ion-textarea [(ngModel)]="customer.address" type="text" formControlName="address"
+                            [class.form-input-invalid]="newCustomerForm.controls.address.invalid
+                                                    && newCustomerForm.controls.address.touched" ></ion-textarea>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label stacked>Postal Code</ion-label>
+                        <ion-input [(ngModel)]="customer.postalCode" type="text" formControlName="postalCode"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        {{ customer.address }}{{customer.address ? "," : "" }} {{city}},
+                        {{province}}{{customer.postalCode ? "," : "" }} {{customer.postalCode}}
+                    </ion-item>
+                </div>
+                <ion-item>
+                    <ion-label stacked>Notes: </ion-label>
+                    <ion-textarea [(ngModel)]="customer.notes" row=3 formControlName="notes" ></ion-textarea>
+                </ion-item>
+            </ion-list>
+            
+            
+            <br/>
+            <button ion-button type="submit" [disabled]="!this.newCustomerForm.valid">Create</button>
+            <button ion-button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+        </form>
+
+</ion-content>

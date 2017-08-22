@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+      <ion-item>
+        <ion-label fixed>Username</ion-label>
+        <ion-input type="text" [(ngModel)]="login.username"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="login.password"></ion-input>
+      </ion-item>
+
+      <button ion-button icon-left (click)="signin();">
+        <ion-icon name="log-in"></ion-icon>
+        Login
+      </button>
+  </ion-list>
+
+  <div *ngIf="mode==='loading'">
+      Please Wait...
+  </div>  
+
+  <div *ngIf="mode==='error'">
+      Login Failed
+  </div>  
+  
+</ion-content>

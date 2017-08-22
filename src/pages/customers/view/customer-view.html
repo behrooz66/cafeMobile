@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Customer Details
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div *ngIf="mode==='wait'">
+        Please wait.
+    </div>
+
+    <div *ngIf="mode==='success'">
+        <div style="text-align: center;">
+            <h3>{{customer.name}}</h3>
+        </div>
+        
+        <div style="text-align: center;">
+            <button ion-button icon-left (click)="addOrder();"><ion-icon name="pizza"></ion-icon>Add Order</button>
+            <button ion-button icon-left (click)="addReservation();"><ion-icon name="book"></ion-icon>Add Reservation</button>
+            <button ion-button icon-left (click)="addGiftCard();"><ion-icon name="happy"></ion-icon>Add Gift Card</button>
+        </div>
+
+        <br/>
+        <i>Phone Numbers</i>
+        <ion-list>
+            <ion-item *ngIf="customer.cell">
+                {{customer.cell}}
+            </ion-item>
+            <ion-item *ngIf="customer.home">
+                {{customer.home}}
+            </ion-item>
+            <ion-item *ngIf="customer.work">
+                {{customer.work}}
+            </ion-item>
+            <ion-item *ngIf="customer.otherPhone">
+                {{customer.otherPhone}}
+            </ion-item>
+        </ion-list>
+        <hr/>
+
+        <i>Address</i>
+        <ion-list>
+            <ion-item *ngIf="!customer.noAddress">
+                {{customer.address}}
+            </ion-item> 
+            <ion-item *ngIf="customer.postalCode">
+                {{customer.postalCode}}
+            </ion-item>
+        </ion-list>
+        <div style="text-align: center;">
+            <button ion-button (click)="edit();">Update</button>
+            <button ion-button color="danger" (click)="delete()">Delete</button>
+        </div>
+        
+        <div style="text-align: center;">
+            <button ion-button color="light" icon-left (click)="orders();"><ion-icon name="pizza"></ion-icon> Orders</button>
+            <button ion-button color="light" icon-left><ion-icon name="book"></ion-icon>Reservations</button>
+            <button ion-button color="light" icon-left><ion-icon name="happy"></ion-icon>Gift Cards</button>
+        </div>
+        
+    </div>
+</ion-content>

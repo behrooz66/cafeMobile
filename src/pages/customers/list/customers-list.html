@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Customers
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-input type="text" placeholder="Search by name or phone number" [(ngModel)]="search" (ngModelChange)="filter();"></ion-input>
+    </ion-item>
+
+    <ion-list>
+        <ion-item *ngFor="let c of customersFiltered" (click)="view(c.id);">
+            <div *ngIf="!c.deleted"> 
+                <h4>{{c.name}}</h4>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-fab right bottom>
+      <button ion-fab (click)="add();"><ion-icon name="add" ></ion-icon></button>
+    </ion-fab>
+</ion-content>
