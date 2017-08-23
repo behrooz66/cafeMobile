@@ -1,0 +1,19 @@
+<div *ngIf="mode === 'loading'">
+    Please wait...
+</div>
+
+<div *ngIf="mode === 'success'">
+    <ion-label stacked>Reservation Status</ion-label>
+    <ion-select class="form-control" [(ngModel)]="statusId" (ionChange)="changed($event)">
+        <ion-option *ngIf="allowNone" value="0" [selected]="allowNone && statusId===0">-- Reservation Status --</ion-option>
+        <ion-option *ngFor="let s of statuses;" value="{{s.id}}" [selected]="s.id === statusId">
+            {{s.status}}
+        </ion-option>
+    </ion-select>
+</div>
+
+<div *ngIf="mode === 'fail'" >
+    Error... Please refresh the page
+</div>
+
+

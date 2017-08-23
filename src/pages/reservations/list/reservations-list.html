@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Reservations
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item *ngFor="let r of reservations" (click)="view(r.id);" 
+                                            [class.shown]="r.reservationStatus.status === 'Shown Up'"
+                                            [class.not-shown]="r.reservationStatus.status === 'Not Shown'"
+                                            [class.cancelled]="r.reservationStatus.status === 'Cancelled'"
+                                            [class.unspecified]="r.reservationStatus.status === 'Unspecified'">
+            <div *ngIf="!r.deleted">
+                <ion-grid>
+                  <ion-row >
+                    <ion-col>
+                       {{r.date | date:'yyyy-MM-dd'}} at {{r.time}}
+                    </ion-col>
+                    <ion-col>
+                       for {{r.numberOfPeople}}
+                    </ion-col>
+                    <ion-col>
+                      {{r.reservationStatus.status}}
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-fab right bottom>
+      <button ion-fab (click)="add();"><ion-icon name="add" ></ion-icon></button>
+    </ion-fab>
+</ion-content>

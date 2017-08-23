@@ -1,26 +1,26 @@
 import { Component } from '@angular/core';
-import { OrderService } from '../../../services/order.service';
+import { ReservationService } from '../../../services/reservation.service';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { CustomerViewPage} from '../../customers/view/customer-view';
-import { OrderEditPage } from '../edit/order-edit';
+//import { OrderEditPage } from '../edit/order-edit';
 
 @Component({
-    templateUrl: 'order-view.html',
+    templateUrl: 'reservation-view.html',
     providers: [
-        OrderService
+        ReservationService
     ]
 })
 
-export class OrderViewPage 
+export class ReservationViewPage 
 {
     id;
-    order;
+    reservation;
     waiting: boolean = false;
     constructor(
         public Nav: NavController,
-        private _order: OrderService,
+        private _reservation: ReservationService,
         private _params: NavParams,
         private _toast: ToastController,
         private _alert: AlertController
@@ -32,15 +32,16 @@ export class OrderViewPage
     ionViewDidLoad()
     {
         this.waiting = true;
-        this._order.getOrder(this.id)
-            .finally(() => this.waiting = false)
+        this._reservation.getReservation(this.id)
             .subscribe(
                 d =>
                 {
-                    this.order = d;
+                    this.waiting = false;
+                    this.reservation = d;
                 },
                 d =>
                 {
+                    this.waiting = false;
                     this._toast.create({
                         position: 'bottom',
                         cssClass: 'toast-fail',
@@ -65,18 +66,18 @@ export class OrderViewPage
                 {
                     text: 'Yes',
                     handler: () => {
-                        this._order.archive(this.id)
+                        this._reservation.archive(this.id)
                             .subscribe(
                                 d => 
                                 {
                                     this._toast.create({
                                         position: 'bottom',
-                                        message: 'Order deleted.',
+                                        message: 'Reservation deleted.',
                                         dismissOnPageChange: false,
                                         duration: 2500,
                                         cssClass: 'toast-success'
                                     }).present();
-                                    this.Nav.push(CustomerViewPage, {id: this.order.customerId});
+                                    this.Nav.push(CustomerViewPage, {id: this.reservation.customerId});
                                 },
                                 d =>
                                 {
@@ -97,7 +98,7 @@ export class OrderViewPage
 
     edit()
     {
-        this.Nav.push(OrderEditPage, {id: this.id });
+        //this.Nav.push(ReservationEditPage, {id: this.id });
     }
 
 

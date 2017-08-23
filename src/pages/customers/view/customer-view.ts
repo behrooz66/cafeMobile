@@ -5,6 +5,7 @@ import { TabsPage } from '../../tabs/tabs';
 import { CustomersListPage } from '../list/customers-list';
 import { CustomerEditPage } from '../edit/customer-edit';
 import { OrdersListPage } from '../../orders/list/orders-list';
+import { ReservationsListPage } from '../../reservations/list/reservations-list';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 
@@ -107,5 +108,10 @@ export class CustomerViewPage {
   orders()
   {
       this.navCtrl.push(OrdersListPage, {customerId: this.customer.id});
+  }
+
+  reservations()
+  {
+      this.navCtrl.push(ReservationsListPage, {customerId: this.customer.id});
   }
 }

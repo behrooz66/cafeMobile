@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OrderService } from '../../../services/order.service';
 import { OrderAddPage } from '../add/order-add';
+import { OrderViewPage} from '../view/order-view';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
@@ -41,7 +42,6 @@ export class OrdersListPage
                 d => 
                 {
                     this.orders = d;
-                    console.log(d);
                 },
                 d =>
                 {
@@ -59,6 +59,11 @@ export class OrdersListPage
     add()
     {
         this._nav.push(OrderAddPage, {customerId: this.customerId});
+    }
+
+    view(id)
+    {
+        this._nav.push(OrderViewPage, {id: id});
     }
 
 

@@ -12,10 +12,15 @@ import { OrdersListPage } from '../pages/orders/list/orders-list';
 import { OrderAddPage } from '../pages/orders/add/order-add';
 import { OrderEditPage } from '../pages/orders/edit/order-edit';
 import { OrderViewPage } from '../pages/orders/view/order-view';
+import { ReservationsListPage } from '../pages/reservations/list/reservations-list';
+import { ReservationAddPage } from '../pages/reservations/add/reservation-add';
+import { ReservationViewPage} from '../pages/reservations/view/reservation-view';
 import { OrderTypesComponent } from '../shared/order-types/order-types.component';
+import { ReservationStatusesComponent } from '../shared/reservation-statuses/reservation-statuses.component';
+import { GiftcardTypeComponent } from '../shared/giftcard-types/giftcard-types.component';
 import { LoginPage } from '../pages/login/login';
-import { ReservationsPage } from '../pages/reservations/reservations';
 import { TabsPage } from '../pages/tabs/tabs';
+import { WaitComponent } from '../shared/wait/wait.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,9 +38,13 @@ import { HttpAuthService } from '../services/http-auth.service';
     OrderAddPage,
     OrderEditPage,
     OrderViewPage,
+    ReservationsListPage,
+    ReservationAddPage,
     OrderTypesComponent,
+    ReservationStatusesComponent,
+    GiftcardTypeComponent,
+    WaitComponent,
     LoginPage,
-    ReservationsPage,
     TabsPage
   ],
   imports: [
@@ -54,8 +63,9 @@ import { HttpAuthService } from '../services/http-auth.service';
     OrderAddPage,
     OrderEditPage,
     OrderViewPage,
+    ReservationsListPage,
+    ReservationAddPage,
     LoginPage,
-    ReservationsPage,
     TabsPage
   ],
   providers: [

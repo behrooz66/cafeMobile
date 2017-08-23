@@ -1,0 +1,17 @@
+<div *ngIf="mode === 'loading'">
+    Loading...
+</div>
+
+<div *ngIf="mode === 'success'">
+    <ion-label stacked>Gift Card Type</ion-label>
+    <ion-select class="form-control" [(ngModel)]="typeId" (ionChange)="changed($event);" >
+        <ion-option *ngIf="allowNone" value="0" [selected]="allowNone && typeId===0">-- Gift Card Type --</ion-option>
+        <ion-option *ngFor="let g of giftcardTypes;" value="{{g.id}}" [selected]="g.id === typeId">
+            {{g.type}}
+        </ion-option>
+    </ion-select>
+</div>
+
+<div *ngIf="mode === 'error'">
+    Error... Please refresh the page
+</div>

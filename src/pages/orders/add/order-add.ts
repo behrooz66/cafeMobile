@@ -61,11 +61,7 @@ export class OrderAddPage
         this.newOrderForm.controls["date"].setValue($event);
     }
 
-    test()
-    {
-        console.log(":D");
-    }
-    
+       
     submit(){
         if (this.onSubmitValidation()){
             this._alert.create({
@@ -96,7 +92,6 @@ export class OrderAddPage
                         cssClass: 'toast-fail',
                         dismissOnPageChange: false,
                     }).present();
-                    console.log(d);
                     this.waiting = false;
                 },
                 () => {

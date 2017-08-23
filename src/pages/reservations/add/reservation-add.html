@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Add Reservation
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <wait *ngIf="waiting"></wait>
+
+    <form [formGroup]="newReservationForm" (ngSubmit)="submit()">
+        <ion-list>
+
+            <ion-item>
+                <ion-label stacked>Date</ion-label>
+                <ion-datetime displayFormat="YYYY-MM-DD" formControlName="date" [(ngModel)]="reservation.date"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Time</ion-label>
+                <ion-datetime displayFormat="hh:mm a" formControlName="time" [(ngModel)]="reservation.time"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Number of People</ion-label>
+                <ion-input type="number" formControlName="numberOfPeople" [(ngModel)]="reservation.numberOfPeople"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+                <ion-label stacked>Table</ion-label>
+                <ion-input type="text" formControlName="table" [(ngModel)]="reservation.table"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Revenue</ion-label>
+                <ion-input type="number" formControlName="revenue" [(ngModel)]="reservation.revenue"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <reservation-statuses formControlName="reservationStatusId" [(ngModel)]="reservation.reservationStatusId"></reservation-statuses>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Notes</ion-label>
+                <ion-textarea formControlName="notes" [(ngModel)]="reservation.notes" rows="3"></ion-textarea>
+            </ion-item>
+
+        </ion-list>
+
+        <button ion-button type="submit"> Save </button>
+    </form>
+
+</ion-content>

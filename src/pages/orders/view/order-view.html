@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+       View Order
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <h4>{{order?.date | date:'MMM dd, yyyy'}}</h4>
+    <ion-list>
+        <ion-item>
+            Type: {{order?.orderType?.type}}
+        </ion-item>
+        <ion-item>
+            Price: {{order?.price}}
+        </ion-item>
+        <ion-item>
+            Notes: {{order?.notes}}
+        </ion-item>
+    </ion-list>
+    <br/>
+    <hr/>
+    <i>Last updated at {{order?.updatedAt | date: 'yyyy-MM-dd hh:mm a'}} by {{order?.updatedBy}}</i>
+    <br/><br/>
+    <div style="text-align: center;">
+        <button ion-button (click)="edit();"> Edit</button>
+        <button ion-button color="danger" (click)="delete();"> Delete</button>
+    </div>
+</ion-content>
+
