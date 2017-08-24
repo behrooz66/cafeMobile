@@ -1,27 +1,27 @@
 import { Component } from '@angular/core';
-import { ReservationService } from '../../../services/reservation.service';
+import { GiftCardService } from '../../../services/giftcard.service';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { CustomerViewPage} from '../../customers/view/customer-view';
-import { ReservationEditPage } from '../edit/reservation-edit';
-//import { OrderEditPage } from '../edit/order-edit';
+import { GiftCardEditPage } from '../edit/giftcard-edit';
+
 
 @Component({
-    templateUrl: 'reservation-view.html',
+    templateUrl: 'giftcard-view.html',
     providers: [
-        ReservationService
+        GiftCardService
     ]
 })
 
-export class ReservationViewPage 
+export class GiftCardViewPage
 {
-    id;
-    reservation;
-    waiting: boolean = false;
+    id; giftcard; 
+    waiting = false;
+
     constructor(
         public Nav: NavController,
-        private _reservation: ReservationService,
+        private _giftcard: GiftCardService,
         private _params: NavParams,
         private _toast: ToastController,
         private _alert: AlertController
@@ -33,12 +33,12 @@ export class ReservationViewPage
     ionViewDidLoad()
     {
         this.waiting = true;
-        this._reservation.getReservation(this.id)
+        this._giftcard.getGiftCard(this.id)
             .subscribe(
                 d =>
                 {
                     this.waiting = false;
-                    this.reservation = d;
+                    this.giftcard = d;
                 },
                 d =>
                 {
@@ -68,19 +68,19 @@ export class ReservationViewPage
                     text: 'Yes',
                     handler: () => {
                         this.waiting = true;
-                        this._reservation.archive(this.id)
+                        this._giftcard.archive(this.id)
                             .subscribe(
                                 d => 
                                 {
                                     this.waiting = false;
                                     this._toast.create({
                                         position: 'bottom',
-                                        message: 'Reservation deleted.',
+                                        message: 'Gift card deleted.',
                                         dismissOnPageChange: false,
                                         duration: 2500,
                                         cssClass: 'toast-success'
                                     }).present();
-                                    this.Nav.push(CustomerViewPage, {id: this.reservation.customerId});
+                                    this.Nav.push(CustomerViewPage, {id: this.giftcard.customerId});
                                 },
                                 d =>
                                 {
@@ -102,7 +102,7 @@ export class ReservationViewPage
 
     edit()
     {
-        this.Nav.push(ReservationEditPage, {id: this.reservation.id });
+        this.Nav.push(GiftCardEditPage, {id: this.giftcard.id });
     }
 
 

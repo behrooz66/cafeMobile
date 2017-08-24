@@ -1,33 +1,34 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Orders
+      Gift Cards
     </ion-title>
   </ion-navbar>
-   
 </ion-header>
 
 <ion-content padding>
-    
     <ion-list>
-        <ng-container  *ngFor="let o of orders">
-            <ion-item *ngIf="!o.deleted" (click)="view(o.id);">
+        <ng-container *ngFor="let g of giftcards">
+            <ion-item *ngIf="!g.deleted" (click)="view(g.id);">
                     <ion-grid>
+                      <ion-row >
+                        <ion-col>
+                          Issued on {{g.issueDate | date:'yyyy-MM-dd'}}
+                        </ion-col>
+                        <ion-col>
+                          expires {{g.expiryDate | date:'yyyy-MM-dd'}}
+                        </ion-col>
+                      </ion-row>
                       <ion-row>
-                        <ion-col>
-                          {{o.date | date:'yyyy-MM-dd'}}
-                        </ion-col>
-                        <ion-col>
-                          {{o.orderType.type}}
-                        </ion-col>
-                        <ion-col>
-                          ${{o.price | number: '1.2'}}
-                        </ion-col>
+                          <ion-col>
+                              ${{g.amount | number: '1.2'}} {{g.giftCardType.type}}
+                          </ion-col>
                       </ion-row>
                     </ion-grid>
             </ion-item>
         </ng-container>
     </ion-list>
+
     <ion-fab right bottom>
       <button ion-fab (click)="add();"><ion-icon name="add" ></ion-icon></button>
     </ion-fab>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Reservation Details
+      Gift Card Details
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,30 +10,27 @@
     <wait *ngIf="waiting"></wait>
     <ion-list>
         <ion-item>
-            Date: {{reservation?.date | date: 'MMM dd, yyyy'}}
+            Card #: {{giftcard?.number}}
         </ion-item>
         <ion-item>
-            Time: {{reservation?.time }}
+            Type: {{giftcard?.giftCardType?.type }}
         </ion-item>
         <ion-item>
-            For {{reservation?.numberOfPeople}} people
+            Issue Date: {{giftcard?.issueDate | date: 'MMM dd, yyyy'}}
         </ion-item>
         <ion-item>
-            Status: {{reservation?.reservationStatus.status}}
+            Expiry Date: {{giftcard?.expiryDate | date: 'MMM dd, yyyy'}}
         </ion-item>
         <ion-item>
-            Table: {{reservation?.table}}
-        </ion-item>
-        <ion-item> 
-            Revenue: {{reservation?.revenue}}
+            Amount: ${{giftcard?.amount | number: '1.2'}}
         </ion-item>
         <ion-item>
-            Notes: {{reservation?.notes}}
+            Notes: {{giftcard?.notes }}
         </ion-item>
     </ion-list>
     <br/>
     <hr/>
-    <i>Last updated at {{reservation?.updatedAt | date: 'yyyy-MM-dd hh:mm a'}} by {{reservation?.updatedBy}}</i>
+    <i>Last updated at {{giftcard?.updatedAt | date: 'yyyy-MM-dd hh:mm a'}} by {{giftcard?.updatedBy}}</i>
     <br/>
     <br/>
     <div style="text-align: center;">

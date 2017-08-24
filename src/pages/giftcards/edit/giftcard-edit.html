@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Edit Gift Card
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <wait *ngIf="waiting"></wait>
+    <form [formGroup]="editGiftCardForm" (ngSubmit)="submit()">
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>Card Number</ion-label>
+                <ion-input type="text" formControlName="number" [(ngModel)]="giftcard.number"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Amount</ion-label>
+                <ion-input type="number" formControlName="amount" [(ngModel)]="giftcard.amount"></ion-input>    
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Issue Date</ion-label>
+                <ion-datetime formControlName="issueDate" [(ngModel)]="giftcard.issueDate"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Expiry Date</ion-label>
+                <ion-datetime max="2024" formControlName="expiryDate" [(ngModel)]="giftcard.expiryDate"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <giftcard-types formControlName="giftcardTypeId" [(ngModel)]="giftcard.giftCardTypeId"></giftcard-types>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Notes</ion-label>
+                <ion-textarea formControlName="notes" [(ngModel)]="giftcard.notes"></ion-textarea>
+            </ion-item>
+        </ion-list>
+
+        <button ion-button type="submit" [disabled]="!this.editGiftCardForm.valid">Save</button>
+    </form>
+</ion-content>

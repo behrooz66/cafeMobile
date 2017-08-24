@@ -8,27 +8,26 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item *ngFor="let r of reservations" (click)="view(r.id);" 
-                                            [class.shown]="r.reservationStatus.status === 'Shown Up'"
-                                            [class.not-shown]="r.reservationStatus.status === 'Not Shown'"
-                                            [class.cancelled]="r.reservationStatus.status === 'Cancelled'"
-                                            [class.unspecified]="r.reservationStatus.status === 'Unspecified'">
-            <div *ngIf="!r.deleted">
-                <ion-grid>
-                  <ion-row >
-                    <ion-col>
-                       {{r.date | date:'yyyy-MM-dd'}} at {{r.time}}
-                    </ion-col>
-                    <ion-col>
-                       for {{r.numberOfPeople}}
-                    </ion-col>
-                    <ion-col>
-                      {{r.reservationStatus.status}}
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-            </div>
-        </ion-item>
+        <ng-container *ngFor="let r of reservations">
+            <ion-item *ngIf="!r.deleted" (click)="view(r.id);" [class.shown]="r.reservationStatus.status === 'Shown Up'"
+                                                [class.not-shown]="r.reservationStatus.status === 'Not Shown'"
+                                                [class.cancelled]="r.reservationStatus.status === 'Cancelled'"
+                                                [class.unspecified]="r.reservationStatus.status === 'Unspecified'">
+                    <ion-grid>
+                      <ion-row >
+                        <ion-col>
+                          {{r.date | date:'yyyy-MM-dd'}} at {{r.time}}
+                        </ion-col>
+                        <ion-col>
+                          for {{r.numberOfPeople}}
+                        </ion-col>
+                        <ion-col>
+                          {{r.reservationStatus.status}}
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+            </ion-item>
+        </ng-container>
     </ion-list>
 
     <ion-fab right bottom>

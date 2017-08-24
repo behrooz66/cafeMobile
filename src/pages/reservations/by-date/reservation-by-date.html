@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Reservation By Date
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <wait *ngIf="waiting"></wait>
+    <ion-list>
+        <ion-item>
+            <ion-label fixed>Date From:</ion-label>
+            <ion-datetime [(ngModel)]="dateFrom"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Date To:</ion-label>
+            <ion-datetime [(ngModel)]="dateTo"></ion-datetime>
+        </ion-item>
+    </ion-list>
+    <div text-center><button ion-button (click)="refresh();"> View</button></div>
+    
+
+    <div *ngIf="reservations.length === 0">
+        No reservations found for the selected period.
+    </div>
+
+    <ion-card *ngFor="let r of reservations" (tap)="markAs(r.id);" [class.shown]="r.reservationStatus.status === 'Shown Up'"
+                                                [class.not-shown]="r.reservationStatus.status === 'Not Shown'"
+                                                [class.cancelled]="r.reservationStatus.status === 'Cancelled'"
+                                                [class.unspecified]="r.reservationStatus.status === 'Unspecified'">
+        <ion-card-header>
+            {{r.customer.name}}
+        </ion-card-header>
+        <ion-card-content>
+            {{r.date | date: 'yyyy-MM-dd'}} at {{r.time}} for {{r.numberOfPeople}} people. <br/>
+            Status: {{r.reservationStatus.status}} <br/>
+            Notes: {{r.notes}}
+        </ion-card-content>
+    </ion-card>
+</ion-content>

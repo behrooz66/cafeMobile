@@ -25,10 +25,10 @@ export class OrderEditPage
     onSubmitErrors = [];
     editOrderForm: FormGroup;
     waiting: boolean = false;
-    loader;
+
 
     constructor(
-       public Nav: NavController,
+        public Nav: NavController,
         private _orderService: OrderService,
         private _params: NavParams,
         fb: FormBuilder,

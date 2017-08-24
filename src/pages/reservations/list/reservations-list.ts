@@ -3,6 +3,7 @@ import { ReservationService } from '../../../services/reservation.service';
 import { Reservation } from '../ireservation';
 //import { }
 import { ReservationAddPage } from '../add/reservation-add';
+import { ReservationViewPage } from '../view/reservation-view';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
@@ -68,9 +69,9 @@ export class ReservationsListPage {
       this._nav.push(ReservationAddPage, {customerId: this.customerId});
   }
 
-  view()
+  view(id)
   {
-
+      this._nav.push(ReservationViewPage, {id: id});
   }
 
 
